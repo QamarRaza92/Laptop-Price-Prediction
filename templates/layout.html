@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+        body {
+            background: linear-gradient(135deg, #141e30, #243b55);
+            color: #c5c6c7;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3 {
+            color: #66fcf1;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px #000000;
+            transition: color 0.3s ease;
+        }
+
+        h1:hover, h2:hover, h3:hover {
+            color: #45a29e;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 0 20px #0b0c10, 0 0 40px #0b0c10, 0 0 60px #0b0c10;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px #45a29e, 0 0 60px #45a29e, 0 0 90px #45a29e;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px auto;
+            color: #66fcf1;
+            background: linear-gradient(45deg, #0b0c10, #1f2833);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            border: 2px solid #45a29e;
+            border-radius: 25px;
+            box-shadow: 0 0 10px #0b0c10, 0 0 20px #0b0c10, 0 0 30px #0b0c10;
+            transition: all 0.3s ease;
+        }
+
+        a.button:hover {
+            background: linear-gradient(45deg, #1f2833, #66fcf1);
+            color: #0b0c10;
+            box-shadow: 0 0 20px #66fcf1, 0 0 40px #66fcf1, 0 0 60px #66fcf1;
+        }
+    </style>
+</head>
+<body>
+    {%with messages = get_flashed_messages()%}
+        {%if messages%}
+            <div class="container">
+                {%for message in messages.errors%}
+                    <p>{{message}}</p>
+                {%endfor%}
+            </div>
+        {%endif%}
+    {%endwith%}
+    
+    {%block content%}
+    {%endblock content%}
+</body>
+</html>

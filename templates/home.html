@@ -1,0 +1,175 @@
+{% extends "layout.html" %}
+
+{%block content%}
+<div class="header">
+    <h1>Welcome to Laptop Price Prediction</h1>
+</div>
+
+<div class="container section-one">
+    <h2>About the Model</h2>
+    <p class="highlighted-text">Welcome to our Laptop Price Prediction tool! This model was built using a comprehensive dataset that included various attributes of laptops such as the Company, Product Type, Screen Size, Screen Resolution, CPU, RAM, and more.</p>
+</div>
+
+<div class="container section-two">
+    <h2>Data Cleaning and Feature Engineering</h2>
+    <p>Initially, our dataset had the following columns:</p>
+    <ul class="column-list">
+        <li><strong>Laptop ID</strong></li>
+        <li><strong>Company</strong></li>
+        <li><strong>Product</strong></li>
+        <li><strong>Type Name</strong></li>
+        <li><strong>Inches</strong></li>
+        <li><strong>Screen Resolution</strong></li>
+        <li><strong>CPU</strong></li>
+        <li><strong>RAM</strong></li>
+        <li><strong>Memory</strong></li>
+        <li><strong>GPU</strong></li>
+        <li><strong>Operating System</strong></li>
+        <li><strong>Weight</strong></li>
+        <li><strong>Price in Euros</strong></li>
+    </ul>
+</div>
+
+<div class="container section-three">
+    <h2>Final Features</h2>
+    <p>After cleaning, we focused on the following key columns:</p>
+    <ul class="column-list">
+        <li><strong>Company</strong>: The brand of the laptop.</li>
+        <li><strong>TypeName</strong>: The type of the laptop (e.g., Ultrabook, Gaming).</li>
+        <li><strong>Inches</strong>: Screen size in inches.</li>
+        <li><strong>Screen Resolution</strong>: The resolution of the laptop screen.</li>
+        <li><strong>Operating System</strong>: The OS installed on the laptop.</li>
+        <li><strong>CPU Company</strong>: Extracted from the CPU name.</li>
+        <li><strong>Processor Generation/Series</strong>: Identified from the CPU details.</li>
+        <li><strong>RAM in GB</strong>: The amount of RAM in gigabytes.</li>
+        <li><strong>ROM</strong>: The type of storage (SSD, HDD).</li>
+        <li><strong>Storage Drive</strong>: The storage capacity in bytes.</li>
+        <li><strong>Price in Rupees</strong>: Converted from Euros for local relevance.</li>
+    </ul>
+</div>
+
+<a href="{{url_for('predict')}}" target="_parent" class="floating-button">Begin Prediction</a>
+
+<div class="footer">
+    <p>© 2024 Laptop Price Prediction. Model By QAMAR RAZA.</p>
+</div>
+
+<style>
+    .header, .footer {
+        background: linear-gradient(135deg, #0b0c10, #1f2833);
+        text-align: center;
+        padding: 20px 0;
+        color: #66fcf1;
+        box-shadow: 0 0 15px #1f2833;
+        border-top: 2px solid #45a29e;
+        border-bottom: 2px solid #45a29e;
+    }
+
+    .header h1, .footer p {
+        margin: 0;
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+
+    .section-one {
+        background: rgba(0, 0, 0, 0.9);
+        border: 2px solid #45a29e;
+        animation: slideIn 1s ease-out forwards;
+    }
+
+    .section-two {
+        background: rgba(36, 55, 85, 0.9);
+        border: 2px solid #66fcf1;
+        animation: slideIn 1s ease-out 0.5s forwards;
+    }
+
+    .section-three {
+        background: rgba(20, 30, 48, 0.9);
+        border: 2px solid #c5c6c7;
+        animation: slideIn 1s ease-out 1s forwards;
+    }
+
+    .section-one, .section-two, .section-three {
+        margin-bottom: 20px;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px #0b0c10, 0 0 40px #0b0c10;
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    @keyframes slideIn {
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .container h2 {
+        color: #c5c6c7;
+        text-align: center;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 4px #000000;
+    }
+
+    .highlighted-text {
+        color: #66fcf1;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #66fcf1;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: justify;
+        line-height: 1.6;
+    }
+
+    .column-list {
+        list-style-type: none;
+        padding-left: 0;
+        color: #66fcf1;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #66fcf1;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .column-list li {
+        background: rgba(0, 0, 0, 0.8);
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 8px;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .column-list li:hover {
+        background: rgba(102, 252, 241, 0.2);
+        transform: scale(1.05);
+    }
+
+    .floating-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 15px 25px;
+        background: linear-gradient(135deg, #66fcf1, #1f2833);
+        color: #0b0c10;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 50px;
+        box-shadow: 0 0 20px #66fcf1, 0 0 40px #66fcf1, 0 0 60px #66fcf1;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+
+    .floating-button:hover {
+        box-shadow: 0 0 30px #66fcf1, 0 0 60px #66fcf1, 0 0 90px #66fcf1;
+        background: linear-gradient(135deg, #1f2833, #66fcf1);
+        color: #ffffff;
+    }
+</style>
+{%endblock content%}

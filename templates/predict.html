@@ -1,0 +1,285 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="form-container">
+    <form action="" method="post">
+	  {{ form.hidden_tag()}} 
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.Company.label }}
+                {{ form.Company }}
+                {% if form.Company.errors %}
+                    <div class="error">
+                        {% for error in form.Company.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.TypeName.label }}
+                {{ form.TypeName }}
+                {% if form.TypeName.errors %}
+                    <div class="error">
+                        {% for error in form.TypeName.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.Inches.label }}
+                {{ form.Inches }}
+                {% if form.Inches.errors %}
+                    <div class="error">
+                        {% for error in form.Inches.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.ScreenResolution.label }}
+                {{ form.ScreenResolution }}
+                {% if form.ScreenResolution.errors %}
+                    <div class="error">
+                        {% for error in form.ScreenResolution.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.OpSys.label }}
+                {{ form.OpSys }}
+                {% if form.OpSys.errors %}
+                    <div class="error">
+                        {% for error in form.OpSys.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.CPU_company.label }}
+                {{ form.CPU_company }}
+                {% if form.CPU_company.errors %}
+                    <div class="error">
+                        {% for error in form.CPU_company.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.Processor_gen.label }}
+                {{ form.Processor_gen }}
+                {% if form.Processor_gen.errors %}
+                    <div class="error">
+                        {% for error in form.Processor_gen.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.RAM.label }}
+                {{ form.RAM }}
+                {% if form.RAM.errors %}
+                    <div class="error">
+                        {% for error in form.RAM.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.ROM.label }}
+                {{ form.ROM }}
+                {% if form.ROM.errors %}
+                    <div class="error">
+                        {% for error in form.ROM.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.ROM_Byte.label }}
+                {{ form.ROM_Byte }}
+                {% if form.ROM_Byte.errors %}
+                    <div class="error">
+                        {% for error in form.ROM_Byte.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.Storage_Drive.label }}
+                {{ form.Storage_Drive }}
+                {% if form.Storage_Drive.errors %}
+                    <div class="error">
+                        {% for error in form.Storage_Drive.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="submit-container">
+            {{ form.Submit(class="predict-button") }}
+        </div>
+    <!-- Displaying the Output -->
+    <h1 style="color:rgb(208, 212, 1); text-align:center; margin-top: 30px;"> 
+        <i>{{ output }}</i> 
+    </h1> 
+            <!-- Redirect to Home Page -->
+    <div style="text-align:center; margin-top: 30px;"> 
+        <h3 style="color:grey"><i>Redirect to Home Page?</i></h3>
+        <a href="{{ url_for('home') }}" target="_parent" style="color:#66fcf1; text-decoration: none; font-weight: bold;"> Home</a> 
+    </div>
+    </form>
+
+    <br> 
+
+</div>
+
+<style>
+    /* Form Container */
+    .form-container {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 30px;
+        background: rgba(20, 20, 20, 0.95);
+        border: 2px solid #66fcf1;
+        border-radius: 20px;
+        box-shadow: 0 0 30px #1f2833, 0 0 60px #1f2833, 0 0 90px #1f2833;
+    }
+
+    /* Form Row */
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    .form-group:last-child {
+        margin-right: 0;
+    }
+
+    .form-group label {
+        display: block;
+        color: #66fcf1;
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 18px;
+        text-shadow: 1px 1px 2px #000;
+    }
+
+    .form-group select,
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        color: #0b0c10;
+        background: #45a29e;
+        border: 2px solid #66fcf1;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #1f2833;
+        transition: all 0.3s ease;
+    }
+
+    .form-group select:focus,
+    .form-group input:focus {
+        border-color: #1f2833;
+        background: #66fcf1;
+        color: #0b0c10;
+        box-shadow: 0 0 20px #66fcf1, 0 0 40px #66fcf1;
+    }
+
+    /* Error Messages */
+    .error {
+        color: #ff4c4c;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    /* Submit Button */
+    .submit-container {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .predict-button {
+        display: inline-block;
+        padding: 15px 40px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #0b0c10;
+        background: linear-gradient(135deg, #66fcf1, #45a29e);
+        border: 2px solid #66fcf1;
+        border-radius: 50px;
+        box-shadow: 0 0 30px #66fcf1, 0 0 60px #66fcf1, 0 0 90px #66fcf1;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+    }
+
+    .predict-button:hover {
+        background: linear-gradient(135deg, #1f2833, #66fcf1);
+        color: #ffffff;
+        box-shadow: 0 0 40px #66fcf1, 0 0 80px #66fcf1, 0 0 120px #66fcf1;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* Form and Button Animations */
+    .form-container {
+        animation: fadeIn 1.5s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock content %}
